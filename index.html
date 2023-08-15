@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        *,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main {
+            width: 100%;
+        }
+        
+        .child-div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            justify-items: center;
+            background-color: red;
+            height: 417px;
+            border-bottom-left-radius: 21%;
+        }
+        
+        .anchor>a {
+            margin-right: 16px;
+            background-color: white;
+            /* width: 53px; */
+            padding: 14px 30px 14px 27px;
+            border-radius: 20px;
+        }
+        
+        .nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            /* background-color: pink; */
+            height: 102px;
+        }
+        
+        .heading {
+            /* background-color: pink; */
+            height: 238px;
+            text-align: center;
+        }
+        
+        .heading>h1 {
+            font-size: 49px;
+            color: white;
+        }
+        
+        .heading>p {
+            padding-top: 10px;
+            color: white;
+        }
+        
+        .anchor1 {
+            padding-top: 3%;
+        }
+        
+        .anchor1>a {
+            background-color: white;
+            padding: 1% 1%;
+            border-radius: 28px;
+            margin-right: 1%;
+        }
+        
+        .text-div {
+            margin-right: -98px;
+        }
+        
+        .text-div label {
+            font-size: 39px;
+            color: white;
+        }
+        
+        .drap-down {
+            margin-right: 300px;
+        }
+        
+        .drap-down>a {
+            margin-right: 16px;
+            color: white;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100%;
+            background-color: yellow;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding-bottom: 25px;
+        }
+        
+        .card-layout {
+            width: 265px;
+            height: 280px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            border-bottom-right-radius: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: auto;
+            margin-left: 20px;
+            margin-top: 20px;
+            box-shadow: 0px 0px 5px 3px blueviolet;
+            justify-content: center;
+            align-items: flex-start;
+            justify-items: center;
+        }
+        /* .card-layout ul {
+            text-align: left;
+            margin: auto;
+            width: 100%;
+            margin-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px; 
+    }*/
+        
+        h1 {
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="main">
+        <div class="child-div">
+            <div class="nav">
+                <div class="text-div">
+                    <label>Blogr</label>
+                </div>
+                <div class="drap-down">
+                    <a>product</a>
+                    <a>product</a>
+                    <a>product</a>
+                </div>
+                <div class="anchor">
+                    <a>Login</a>
+                    <a>Sing-up</a>
+                </div>
+
+            </div>
+            <div class="heading">
+                <h1>A modern publishing platform</h1>
+                <p>Grow your audience and bulid your online brand</p>
+                <div class="anchor1"><a>start for free</a>
+                    <a>learn more</a></div>
+
+            </div>
+
+        </div>
+        <button id="button">GETDATA</button>
+
+        <div id="getdata" class="container">
+
+        </div>
+    </div>
+    </div>
+
+</body>
+<!-- <script src="fetch.js"></script> -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#button").click(function() {
+
+
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/posts',
+                success: function(result) {
+                    var d = document.getElementById('getdata');
+                    for (var i = 0; i < result.length; i++) {
+
+                        d.innerHTML += `<div class='card-layout'>
+                                           <h1>Employee List</h1>
+                                            <ul id="list">Id : ${result[i].id}</ul>
+                                           <ul id="list1">Title : ${result[i].title}</ul>
+                                           <ul id="list2">Body : ${ result[i].body}</ul>
+                                            </div>`
+                    }
+                }
+            });
+
+        });
+
+    })
+</script>
+
+</html>
